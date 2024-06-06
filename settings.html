@@ -74,7 +74,7 @@
 </nav>
 
 <main class="container">
-    <div class="header">
+    <div class="header" onclick="location.href='store.html'">
         <div class="points">P 25,000</div>
         <div class="store-icon">🛍️ <span>스토어</span></div>
     </div>
@@ -99,4 +99,17 @@
 </footer>
 
 </body>
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        if (!localStorage.getItem('points')) {
+            localStorage.setItem('points', '25000');
+        }
+        updatePointsDisplay();
+    });
+
+    function updatePointsDisplay() {
+        const points = localStorage.getItem('points');
+        document.querySelector('.points').innerText = `P ${points}`;
+    }
+</script>
 </html>

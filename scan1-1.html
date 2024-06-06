@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>정보 - 북아현동 선형공원</title>
+    <title>QR 코드 스캔하기 - 북아현동 선형공원</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@1/css/pico.min.css">
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;700&display=swap');
@@ -40,22 +40,32 @@
             font-size: 1.2rem;
         }
 
-        .info-title {
+        .scan-title {
             font-size: 1.5rem;
             text-align: center;
             margin: 1rem 0;
         }
 
-        .info-content {
-            padding: 1rem;
-            background-color: #f8f9fa;
-            border-radius: 0.5rem;
-            border: 1px solid #ddd;
+        .scan-description {
+            font-size: 1rem;
+            text-align: center;
+            margin: 0 0 1rem;
         }
 
-        .info-content p {
-            font-size: 1rem;
-            margin: 0 0 1rem;
+        .video-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: #e9ecef;
+            border-radius: 0.5rem;
+            border: 1px solid #ddd;
+            padding: 1rem;
+        }
+
+        video {
+            width: 100%;
+            max-width: 500px;
+            border-radius: 0.5rem;
         }
     </style>
 </head>
@@ -66,9 +76,9 @@
         <a href="index.html"><li><strong>북아현동 선형공원</strong></li></a>
     </ul>
     <ul>
-        <li><a href="index.html" role="button">Home</a></li>
+        <li><a href="index.html">Home</a></li>
         <li><a href="store.html">Store</a></li>
-        <li><a href="scan.html">Scan</a></li>
+        <li><a href="scan.html" role="button">Scan</a></li>
     </ul>
 </nav>
 
@@ -78,14 +88,11 @@
         <div class="store-icon">🛍️ <span>스토어</span></div>
     </div>
 
-    <div class="info-title">선형공원에 대하여</div>
+    <div class="scan-title">QR 코드 스캔하기</div>
+    <div class="scan-description">아래의 카메라로 QR 코드를 스캔하세요.</div>
 
-    <div class="info-content">
-        <!-- Add your information here -->
-        <p>환경계획 (CRP2340) 7조에서 제안하는, 북아현동 녹지 부족 문제에 대한 해결책입니다.
-            개별적인 공원을 공통된 선형축 및 원형축으로 이어, 그린 인프라를 조성하는 것이 그 목표입니다.
-            이러한 그린 인프라 축을 활성화하기 위해 이러한 Web 또는 App 기술을 활용할 수 있을 것입니다.
-        </p>
+    <div class="video-container">
+        <video id="video" autoplay></video>
     </div>
 </main>
 
@@ -93,7 +100,6 @@
     <small>환경계획 (CRP2340) 7조: 오주현 유다영 우희중 김도윤 이다현</small>
 </footer>
 
-</body>
 <script>
     document.addEventListener('DOMContentLoaded', function() {
         if (!localStorage.getItem('points')) {
@@ -106,5 +112,24 @@
         const points = localStorage.getItem('points');
         document.querySelector('.points').innerText = `P ${points}`;
     }
+    
+    // Access the device camera and stream to video element
+    navigator.mediaDevices.getUserMedia({ video: { facingMode: "environment" } })
+        .then(function(stream) {
+            const video = document.getElementById('video');
+            video.srcObject = stream;
+            video.setAttribute("playsinline", true); // required to tell iOS safari we don't want fullscreen
+            video.play();
+        })
+        .catch(function(err) {
+            console.error("Error accessing the camera: ", err);
+        });
 </script>
+
+</body>
+</html>
+
+</script>
+
+</body>
 </html>
