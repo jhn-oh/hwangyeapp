@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>설정 - 북아현동 선형공원</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@1/css/pico.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;700&display=swap');
+        @import url('https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css');
+
+        body {
+            font-family: 'Pretendard', 'Noto Sans KR', sans-serif;
+        }
+
+        nav strong {
+            font-size: 1.8rem;
+        }
+
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem;
+            background-color: #f8f9fa;
+        }
+
+        .header .points {
+            font-size: 1.5rem;
+        }
+
+        .header .store-icon {
+            display: flex;
+            align-items: center;
+            font-size: 1.2rem;
+        }
+
+        .header .store-icon span {
+            margin-left: 0.5rem;
+            font-size: 1.2rem;
+        }
+
+        .settings-title {
+            font-size: 1.5rem;
+            text-align: center;
+            margin: 1rem 0;
+        }
+
+        .settings-content {
+            padding: 1rem;
+            background-color: #f8f9fa;
+            border-radius: 0.5rem;
+            border: 1px solid #ddd;
+        }
+
+        .settings-content label {
+            font-size: 1rem;
+            margin: 0 0 1rem;
+            display: block;
+        }
+    </style>
+</head>
+<body>
+
+<nav class="container-fluid">
+    <ul>
+        <a href="index.html"><li><strong>북아현동 선형공원</strong></li></a>
+    </ul>
+    <ul>
+        <li><a href="index.html" role="button">Home</a></li>
+        <li><a href="store.html">Store</a></li>
+        <li><a href="scan.html">Scan</a></li>
+    </ul>
+</nav>
+
+<main class="container">
+    <div class="header">
+        <div class="points">P 25,000</div>
+        <div class="store-icon">🛍️ <span>스토어</span></div>
+    </div>
+
+    <div class="settings-title">설정</div>
+
+    <div class="settings-content">
+        <label>
+            <input type="checkbox" name="setting1"> 알림 설정
+        </label>
+        <label>
+            <input type="checkbox" name="setting2"> 다크 모드
+        </label>
+        <label>
+            <input type="checkbox" name="setting3"> 위치 서비스
+        </label>
+    </div>
+</main>
+
+<footer class="container">
+    <small>환경계획 (CRP2340) 7조: 오주현 유다영 우희중 김도윤 이다현</small>
+</footer>
+
+</body>
+</html>

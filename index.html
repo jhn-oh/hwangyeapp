@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>북아현동 선형공원</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@1/css/pico.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;700&display=swap');
+        @import url('https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css');
+
+        body {
+            font-family: 'Pretendard', 'Noto Sans KR', sans-serif;
+        }
+
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem;
+            background-color: #f8f9fa;
+        }
+
+        .header .points {
+            font-size: 1.5rem;
+        }
+
+        .header .store-icon {
+            display: flex;
+            align-items: center;
+            font-size: 1.2rem;
+        }
+
+        .header .store-icon span {
+            margin-left: 0.5rem;
+            font-size: 1.2rem;
+        }
+
+        .map {
+            width: 100%;
+            height: 50vh;
+            background-color: #e9ecef;
+            margin: 1rem 0;
+        }
+
+        .footer {
+            display: flex;
+            justify-content: space-between;
+            padding: 0.5rem;
+            background-color: #f8f9fa;
+        }
+
+        .footer button {
+            flex: 1;
+            margin: 0 0.5rem;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            font-size: 1rem;
+            background-color: transparent;
+            border: 2px solid #1095C1;
+            color: #1095C1;
+        }
+
+        .footer button .icon {
+            font-size: 1.5rem;
+        }
+
+        .footer button.scan {
+            background-color: #1095C1;
+            color: #fff;
+        }
+
+        nav strong {
+            font-size: 1.8rem;
+        }
+    </style>
+</head>
+<body>
+
+<nav class="container-fluid">
+    <ul>
+        <li><strong>북아현동 선형공원</strong></li>
+    </ul>
+    <ul>
+        <li><a href="index.html" role="button">Home</a></li>
+        <li><a href="store.html">Store</a></li>
+        <li><a href="scan.html" >Scan</a></li>
+    </ul>
+</nav>
+
+<main class="container">
+    <div class="header" onclick="location.href='store.html'">
+        <div class="points">P 25,000</div>
+        <div class="store-icon">🛍️ <span>스토어</span></div>
+    </div>
+
+    <div class="map">
+        <iframe src="https://www.google.com/maps/d/u/0/embed?mid=1c1I86S1Z3PpYIIGjE_7u9ng97446Mmg&ehbc=2E312F" width="100%" height="100%"></iframe>
+    </div>
+
+    <div class="footer">
+        <button class="info" onclick="location.href='info.html'">
+            <span class="icon">ℹ️</span>
+            <span>선형공원 정보</span>
+        </button>
+        <button class="scan" onclick="location.href='scan.html'">
+            <span class="icon">📷</span>
+            <span>QR 코드 스캔하기</span>
+        </button>
+        <button class="settings" onclick="location.href='settings.html'">
+            <span class="icon">⚙️</span>
+            <span>설정</span>
+        </button>
+    </div>
+</main>
+
+<footer class="container">
+    <small>환경계획 (CRP2340) 7조: 오주현 유다영 우희중 김도윤 이다현</small>
+</footer>
+
+</body>
+</html>

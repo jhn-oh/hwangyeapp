@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>스토어 - 북아현동 선형공원</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@1/css/pico.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;700&display=swap');
+        @import url('https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css');
+
+        body {
+            font-family: 'Pretendard', 'Noto Sans KR', sans-serif;
+        }
+
+        nav strong {
+            font-size: 1.8rem;
+        }
+
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem;
+            background-color: #f8f9fa;
+        }
+
+        .header .points {
+            font-size: 1.5rem;
+        }
+
+        .header .store-icon {
+            display: flex;
+            align-items: center;
+            font-size: 1.2rem;
+        }
+
+        .header .store-icon span {
+            margin-left: 0.5rem;
+            font-size: 1.2rem;
+        }
+
+        .store-title {
+            font-size: 1.5rem;
+            text-align: center;
+            margin: 1rem 0;
+        }
+
+        .grid-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+            margin-bottom: 1rem;
+        }
+
+        .grid-item {
+            background-color: #e9ecef;
+            padding: 1rem;
+            text-align: center;
+            border: 1px solid #ddd;
+            border-radius: 0.5rem;
+        }
+
+        .grid-item img {
+            width: auto;
+            height: 150px;
+            border-radius: 0.5rem;
+        }
+
+        .grid-item h3 {
+            font-size: 1.2rem;
+            margin: 0.5rem 0 0.25rem;
+        }
+
+        .grid-item p {
+            font-size: 1rem;
+            margin: 0;
+        }
+
+        .description {
+            padding: 1rem;
+            background-color: #f8f9fa;
+            border-radius: 0.5rem;
+            border: 1px solid #ddd;
+        }
+    </style>
+</head>
+<body>
+
+<nav class="container-fluid">
+    <ul>
+        <a href="index.html"><li><strong>북아현동 선형공원</strong></li></a>
+    </ul>
+    <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="store.html" role="button">Store</a></li>
+        <li><a href="scan.html" >Scan</a></li>
+    </ul>
+</nav>
+
+<main class="container">
+    <div class="header">
+        <div class="points">P 25,000</div>
+        <div class="store-icon">🛍️ <span>스토어</span></div>
+    </div>
+
+    <div class="store-title">구매하기</div>
+
+    <div class="grid-container">
+        <div class="grid-item">
+            <img src="store_1.jpg" alt="상추 씨앗">
+            <h3>상추 씨앗</h3>
+            <p>5000p</p>
+        </div>
+        <div class="grid-item">
+            <img src="store_2.jpg" alt="방울토마토 모종">
+            <h3>방울토마토 모종</h3>
+            <p>15000p</p>
+        </div>
+        <div class="grid-item">
+            <img src="store_3.jpg" alt="고추 모종">
+            <h3>고추 모종</h3>
+            <p>15000p</p>
+        </div>
+        <div class="grid-item">
+            <img src="store_4.jpg" alt="튤립">
+            <h3>튤립</h3>
+            <p>20000p</p>
+        </div>
+        <div class="grid-item">
+            <img src="store_5.jpg" alt="모종삽">
+            <h3>모종삽</h3>
+            <p>15000p</p>
+        </div>
+        <div class="grid-item">
+            <img src="store_6.jpg" alt="호미">
+            <h3>호미</h3>
+            <p>15000p</p>
+        </div>
+    </div>
+
+    <div class="description">
+        <p><b>씨앗 심는 방법</b></p>
+        <p>1. 씨앗을 흙에 심습니다.</p>
+        <p>2. 적절한 양의 물을 줍니다.</p>
+        <p>3. 햇빛이 잘 드는 곳에 둡니다.</p>
+        <p>4. 물을 주기적으로 줍니다.</p>
+        <p>5. 시간이 지나면 씨앗이 싹을 틔웁니다.</p>
+    </div>
+    <br>
+    <div class="description">
+        <p><b>씨앗/모종/원예도구 수령하는 방법</b></p>
+        <p>1. 원하는 상품을 선택하여 구매합니다.</p>
+        <p>2. 포인트가 차감됩니다.</p>
+        <p>3. 신분등을 지참하여, 북아현동 또는 충현동 주민센터로 방문합니다.</p>
+        <p>4. 본인 확인 절차 이후 상품이 지급됩니다.</p>
+    </div>
+</main>
+
+<footer class="container">
+    <small>환경계획 (CRP2340) 7조: 오주현 유다영 우희중 김도윤 이다현</small>
+</footer>
+
+</body>
+</html>

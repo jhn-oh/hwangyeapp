@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>QR 코드 스캔하기 - 북아현동 선형공원</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@1/css/pico.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;700&display=swap');
+        @import url('https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css');
+
+        body {
+            font-family: 'Pretendard', 'Noto Sans KR', sans-serif;
+        }
+
+        nav strong {
+            font-size: 1.8rem;
+        }
+
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem;
+            background-color: #f8f9fa;
+        }
+
+        .header .points {
+            font-size: 1.5rem;
+        }
+
+        .header .store-icon {
+            display: flex;
+            align-items: center;
+            font-size: 1.2rem;
+        }
+
+        .header .store-icon span {
+            margin-left: 0.5rem;
+            font-size: 1.2rem;
+        }
+
+        .scan-title {
+            font-size: 1.5rem;
+            text-align: center;
+            margin: 1rem 0;
+        }
+
+        .scan-description {
+            font-size: 1rem;
+            text-align: center;
+            margin: 0 0 1rem;
+        }
+
+        .video-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: #e9ecef;
+            border-radius: 0.5rem;
+            border: 1px solid #ddd;
+            padding: 1rem;
+        }
+
+        video {
+            width: 100%;
+            max-width: 500px;
+            border-radius: 0.5rem;
+        }
+    </style>
+</head>
+<body>
+
+<nav class="container-fluid">
+    <ul>
+        <a href="index.html"><li><strong>북아현동 선형공원</strong></li></a>
+    </ul>
+    <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="store.html">Store</a></li>
+        <li><a href="scan.html" role="button">Scan</a></li>
+    </ul>
+</nav>
+
+<main class="container">
+    <div class="header">
+        <div class="points">P 25,000</div>
+        <div class="store-icon">🛍️ <span>스토어</span></div>
+    </div>
+
+    <div class="scan-title">QR 코드 스캔하기</div>
+    <div class="scan-description">아래의 카메라로 QR 코드를 스캔하세요.</div>
+
+    <div class="video-container">
+        <video id="video" autoplay></video>
+    </div>
+</main>
+
+<footer class="container">
+    <small>환경계획 (CRP2340) 7조: 오주현 유다영 우희중 김도윤 이다현</small>
+</footer>
+
+<script>
+    // Access the device camera and stream to video element
+    navigator.mediaDevices.getUserMedia({ video: { facingMode: "environment" } })
+        .then(function(stream) {
+            const video = document.getElementById('video');
+            video.srcObject = stream;
+            video.setAttribute("playsinline", true); // required to tell iOS safari we don't want fullscreen
+            video.play();
+        })
+        .catch(function(err) {
+            console.error("Error accessing the camera: ", err);
+        });
+</script>
+
+</body>
+</html>
