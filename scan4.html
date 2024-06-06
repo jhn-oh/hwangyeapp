@@ -62,7 +62,7 @@
             padding: 1rem;
         }
 
-        #video {
+        video {
             width: 100%;
             max-width: 500px;
             border-radius: 0.5rem;
@@ -71,9 +71,10 @@
         .scan-button {
             display: flex;
             justify-content: center;
-            margin: 1rem 0;
+            margin-top: 1rem;
         }
     </style>
+    <script src="https://unpkg.com/html5-qrcode/minified/html5-qrcode.min.js"></script>
 </head>
 <body>
 
@@ -102,7 +103,7 @@
     </div>
 
     <div class="scan-button">
-        <button onclick="captureAndScanQRCode()">스캔하기</button>
+        <button onclick="scanQRCode()">스캔하기</button>
     </div>
 </main>
 
@@ -125,9 +126,9 @@
     }
 
     function startCamera() {
+        const video = document.getElementById('video');
         navigator.mediaDevices.getUserMedia({ video: { facingMode: "environment" } })
             .then(function(stream) {
-                const video = document.getElementById('video');
                 video.srcObject = stream;
                 video.setAttribute("playsinline", true); // required to tell iOS safari we don't want fullscreen
                 video.play();
@@ -137,40 +138,33 @@
             });
     }
 
-    function captureAndScanQRCode() {
+    function scanQRCode() {
         const video = document.getElementById('video');
         const canvas = document.createElement('canvas');
         const context = canvas.getContext('2d');
         canvas.width = video.videoWidth;
         canvas.height = video.videoHeight;
         context.drawImage(video, 0, 0, canvas.width, canvas.height);
-        canvas.toBlob((blob) => {
-            const formData = new FormData();
-            formData.append('file', blob, 'qrcode.png');
-            fetch('https://api.qrserver.com/v1/read-qr-code/', {
-                method: 'POST',
-                body: formData
-            })
-            .then(response => response.json())
-            .then(data => {
-                const qrData = data[0].symbol[0].data;
-                alert(`Scanned QR Code: ${qrData}`); // Debugging alert to show the QR code text
-                handleQRCode(qrData);
+        const imageData = context.getImageData(0, 0, canvas.width, canvas.height);
+
+        const html5QrCode = new Html5Qrcode(/* element id */ "qr-reader");
+
+        html5QrCode.scan(imageData)
+            .then(decodedText => {
+                alert(decodedText);  // Debugging alert to show the QR code text
+                handleQRCode(decodedText);
             })
             .catch(err => {
-                console.error("Error reading QR code: ", err);
+                console.error(`QR Code scanning error: ${err}`);
             });
-        }, 'image/png');
     }
 
     function handleQRCode(text) {
-        if (text && text.startsWith('Hwangye_Bukahyeondong_')) {
+        if (text.startsWith('Hwangye_Bukahyeondong_')) {
             const number = text.split('_').pop();
             alert(`${number}번 장소 인증이 완료되었습니다`);
             addPoints(500);
             updatePointsDisplay();
-        } else {
-            alert('Invalid QR Code');
         }
     }
 
