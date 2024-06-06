@@ -154,7 +154,7 @@
             .then(response => response.json())
             .then(data => {
                 const qrData = data[0].symbol[0].data;
-                alert(`Scanned QR Code: ${qrData}`); // Debugging alert to show the QR code text
+                // alert(`Scanned QR Code: ${qrData}`); // Debugging alert to show the QR code text
                 handleQRCode(qrData);
             })
             .catch(err => {
@@ -170,7 +170,7 @@
             addPoints(500);
             updatePointsDisplay();
         } else {
-            alert('Invalid QR Code');
+            alert('유효하지 않은 QR코드입니다.');
         }
     }
 
