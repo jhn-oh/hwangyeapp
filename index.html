@@ -118,6 +118,18 @@
 <footer class="container">
     <small>환경계획 (CRP2340) 7조: 오주현 유다영 우희중 김도윤 이다현</small>
 </footer>
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        if (!localStorage.getItem('points')) {
+            localStorage.setItem('points', '25000');
+        }
+        updatePointsDisplay();
+    });
 
+    function updatePointsDisplay() {
+        const points = localStorage.getItem('points');
+        document.querySelector('.points').innerText = `P ${points}`;
+    }
+</script>
 </body>
 </html>

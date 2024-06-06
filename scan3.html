@@ -62,14 +62,13 @@
             padding: 1rem;
         }
 
-        video {
+        #qr-reader {
             width: 100%;
             max-width: 500px;
-            border-radius: 0.5rem;
         }
     </style>
+    <script src="https://unpkg.com/html5-qrcode/minified/html5-qrcode.min.js"></script>
 </head>
-<script src="https://unpkg.com/html5-qrcode" type="text/javascript"></script>
 <body>
 
 <nav class="container-fluid">
@@ -92,7 +91,11 @@
     <div class="scan-title">QR 코드 스캔하기</div>
     <div class="scan-description">아래의 카메라로 QR 코드를 스캔하세요.</div>
 
-    <div id="reader" width="600px"></div>
+    <div class="video-container">
+        <div id="qr-reader">
+            <video id="video" autoplay></video>
+        </div>
+    </div>
 </main>
 
 <footer class="container">
@@ -105,49 +108,53 @@
             localStorage.setItem('points', '25000');
         }
         updatePointsDisplay();
+        startQRCodeScanner();
     });
 
     function updatePointsDisplay() {
         const points = localStorage.getItem('points');
         document.querySelector('.points').innerText = `P ${points}`;
     }
-    
-    // Access the device camera and stream to video element
-    navigator.mediaDevices.getUserMedia({ video: { facingMode: "environment" } })
-        .then(function(stream) {
-            const video = document.getElementById('video');
-            video.srcObject = stream;
-            video.setAttribute("playsinline", true); // required to tell iOS safari we don't want fullscreen
-            video.play();
-        })
-        .catch(function(err) {
-            console.error("Error accessing the camera: ", err);
+
+    function startQRCodeScanner() {
+        const qrCodeSuccessCallback = (decodedText, decodedResult) => {
+            alert(decodedText);  // Debugging alert to show the QR code text
+            handleQRCode(decodedText);
+        };
+
+        const qrCodeErrorCallback = (errorMessage) => {
+            // Currently, do nothing on QR code scan error
+        };
+
+        const html5QrCode = new Html5Qrcode("qr-reader");
+
+        html5QrCode.start(
+            { facingMode: "environment" }, 
+            {
+                fps: 10,    // Optional, frame per seconds for qr code scanning
+                qrbox: 250  // Optional, if you want bounded box UI
+            },
+            qrCodeSuccessCallback,
+            qrCodeErrorCallback
+        ).catch((err) => {
+            console.error(`Error starting QR code scanner: ${err}`);
         });
+    }
 
-
-        function onScanSuccess(decodedText, decodedResult) {
-        // handle the scanned code as you like, for example:
-        console.log(`Code matched = ${decodedText}`, decodedResult);
-}
-
-        function onScanFailure(error) {
-        // handle scan failure, usually better to ignore and keep scanning.
-        // for example:
-            console.warn(`Code scan error = ${error}`);
+    function handleQRCode(text) {
+        if (text.startsWith('Hwangye_Bukahyeondong_')) {
+            const number = text.split('_').pop();
+            alert(`${number}번 장소 인증이 완료되었습니다`);
+            addPoints(500);
+            updatePointsDisplay();
         }
+    }
 
-        let html5QrcodeScanner = new Html5QrcodeScanner(
-        "reader",
-        { fps: 10, qrbox: {width: 250, height: 250} },
-        /* verbose= */ false);
-        html5QrcodeScanner.render(onScanSuccess, onScanFailure);
-
-
-</script>
-
-</body>
-</html>
-
+    function addPoints(pointsToAdd) {
+        let points = parseInt(localStorage.getItem('points'), 10);
+        points += pointsToAdd;
+        localStorage.setItem('points', points);
+    }
 </script>
 
 </body>

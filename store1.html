@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Store - 북아현동 선형공원</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@1/css/pico.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;700&display=swap');
+        @import url('https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css');
+
+        body {
+            font-family: 'Pretendard', 'Noto Sans KR', sans-serif;
+        }
+
+        nav strong {
+            font-size: 1.8rem;
+        }
+
+        .product {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin: 1rem 0;
+        }
+
+        .product .price {
+            font-size: 1.2rem;
+            color: #1095C1;
+        }
+
+        .product button {
+            background-color: #1095C1;
+            color: #fff;
+            border: none;
+            padding: 0.5rem 1rem;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+
+<nav class="container-fluid">
+    <ul>
+        <a href="index.html"><li><strong>북아현동 선형공원</strong></li></a>
+    </ul>
+    <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="store.html" role="button">Store</a></li>
+        <li><a href="scan.html">Scan</a></li>
+    </ul>
+</nav>
+
+<main class="container">
+    <div class="header">
+        <div class="points">P 25,000</div>
+    </div>
+
+    <div class="product">
+        <span>Product 1</span>
+        <span class="price">P 5,000</span>
+        <button onclick="purchaseProduct(5000)">구매</button>
+    </div>
+
+    <div class="product">
+        <span>Product 2</span>
+        <span class="price">P 10,000</span>
+        <button onclick="purchaseProduct(10000)">구매</button>
+    </div>
+
+    <div class="product">
+        <span>Product 3</span>
+        <span class="price">P 15,000</span>
+        <button onclick="purchaseProduct(15000)">구매</button>
+    </div>
+</main>
+
+<footer class="container">
+    <small>환경계획 (CRP2340) 7조: 오주현 유다영 우희중 김도윤 이다현</small>
+</footer>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        updatePointsDisplay();
+    });
+
+    function updatePointsDisplay() {
+        const points = localStorage.getItem('points');
+        document.querySelector('.points').innerText = `P ${points}`;
+    }
+
+    function purchaseProduct(price) {
+        let points = parseInt(localStorage.getItem('points'), 10);
+        if (points >= price) {
+            points -= price;
+            localStorage.setItem('points', points);
+            alert('상품 구매가 완료되었습니다. 주민센터에 방문하여 상품을 찾아가세요');
+            updatePointsDisplay();
+        } else {
+            alert('포인트가 충분하지 않습니다');
+        }
+    }
+</script>
+
+</body>
+</html>

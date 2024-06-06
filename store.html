@@ -107,35 +107,35 @@
     <div class="store-title">구매하기</div>
 
     <div class="grid-container">
-        <div class="grid-item">
+        <div class="grid-item" onclick="purchaseProduct(5000)">
             <img src="store_1.jpg" alt="상추 씨앗">
             <h3>상추 씨앗</h3>
-            <p>5000p</p>
+            <div class="points"> <p>P 5,000</p> </div>
         </div>
-        <div class="grid-item">
+        <div class="grid-item product" onclick="purchaseProduct(15000)">
             <img src="store_2.jpg" alt="방울토마토 모종">
             <h3>방울토마토 모종</h3>
-            <p>15000p</p>
+            <div class="points"> <p>P 15,000</p> </div>
         </div>
-        <div class="grid-item">
+        <div class="grid-item product" onclick="purchaseProduct(15000)">
             <img src="store_3.jpg" alt="고추 모종">
             <h3>고추 모종</h3>
-            <p>15000p</p>
+            <div class="points"> <p>P 15,000</p> </div>
         </div>
-        <div class="grid-item">
+        <div class="grid-item product" onclick="purchaseProduct(20000)">
             <img src="store_4.jpg" alt="튤립">
             <h3>튤립</h3>
-            <p>20000p</p>
+            <div class="points"> <p>P 20,000</p> </div>
         </div>
-        <div class="grid-item">
+        <div class="grid-item product" onclick="purchaseProduct(15000)">
             <img src="store_5.jpg" alt="모종삽">
             <h3>모종삽</h3>
-            <p>15000p</p>
+            <div class="points"> <p>P 15,000</p> </div>
         </div>
-        <div class="grid-item">
-            <img src="store_6.jpg" alt="호미">
+        <div class="grid-item product">
+            <img src="store_6.jpg" alt="호미" onclick="purchaseProduct(15000)">
             <h3>호미</h3>
-            <p>15000p</p>
+            <div class="points"> <p>P 15,000</p> </div>
         </div>
     </div>
 
@@ -160,6 +160,27 @@
 <footer class="container">
     <small>환경계획 (CRP2340) 7조: 오주현 유다영 우희중 김도윤 이다현</small>
 </footer>
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        updatePointsDisplay();
+    });
 
+    function updatePointsDisplay() {
+        const points = localStorage.getItem('points');
+        document.querySelector('.points').innerText = `P ${points}`;
+    }
+
+    function purchaseProduct(price) {
+        let points = parseInt(localStorage.getItem('points'), 10);
+        if (points >= price) {
+            points -= price;
+            localStorage.setItem('points', points);
+            alert('상품 구매가 완료되었습니다. 주민센터에 방문하여 상품을 찾아가세요');
+            updatePointsDisplay();
+        } else {
+            alert('포인트가 충분하지 않습니다');
+        }
+    }
+</script>
 </body>
 </html>
