@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>포인트 추가 - 북아현동 선형공원</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@1/css/pico.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;700&display=swap');
+        @import url('https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css');
+
+        body {
+            font-family: 'Pretendard', 'Noto Sans KR', sans-serif;
+        }
+
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem;
+            background-color: #f8f9fa;
+        }
+
+        .header .points {
+            font-size: 1.5rem;
+        }
+
+        .add-points-button {
+            display: flex;
+            justify-content: center;
+            margin: 1rem 0;
+        }
+    </style>
+</head>
+<body>
+
+<nav class="container-fluid">
+    <ul>
+        <a href="index.html"><li><strong>북아현동 선형공원</strong></li></a>
+    </ul>
+    <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="store.html">Store</a></li>
+        <li><a href="scan.html">Scan</a></li>
+    </ul>
+</nav>
+
+<main class="container">
+    <div class="header">
+        <div class="points">P 25,000</div>
+    </div>
+
+    <div class="add-points-button">
+        <button onclick="add5000Points()">5000 포인트 추가</button>
+    </div>
+</main>
+
+<footer class="container">
+    <small>환경계획 (CRP2340) 7조: 오주현 유다영 우희중 김도윤 이다현</small>
+</footer>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        if (!localStorage.getItem('points')) {
+            localStorage.setItem('points', '25000');
+        }
+        updatePointsDisplay();
+    });
+
+    function updatePointsDisplay() {
+        const points = localStorage.getItem('points');
+        document.querySelector('.points').innerText = `P ${points}`;
+    }
+
+    function add5000Points() {
+        let points = parseInt(localStorage.getItem('points'), 10);
+        points += 5000;
+        localStorage.setItem('points', points);
+        updatePointsDisplay();
+        alert("5000 포인트가 추가되었습니다.");
+    }
+</script>
+
+</body>
+</html>
